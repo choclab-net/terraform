@@ -28,11 +28,13 @@ pipeline {
                 dockerfile true
             }
             steps {
-                tsteps.structure()
-                sh """
-                |terraform version
-                |ls
-                |""".stripMargin()
+                script {
+                    tsteps.structure()
+                    sh """
+                    |terraform version
+                    |ls
+                    |""".stripMargin()
+                }
             }
         }
     }
