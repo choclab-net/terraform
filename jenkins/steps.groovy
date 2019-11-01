@@ -12,3 +12,4 @@ def structure() {
     |""".stripMargin()
 }
 
+return this;
