@@ -24,13 +24,14 @@ pipeline {
         stage('Check dockerfile') {
             agent {
                 dockerfile {
-                    args '-v ${PWD}/code:/tmp/code'
+                    args '-v ${PWD}/code:/code -w /code'
                 }
             }
             steps {
                 sh """
                 |terraform version
-                |ls /tmp/code
+                |\$(pwd)
+                |ls
                 |""".stripMargin()
             }
         }
