@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def steps = evaluate readTrusted('jenkins/steps.groovy')
+def tsteps = evaluate readTrusted('jenkins/steps.groovy')
 
 pipeline {
     agent any
@@ -28,7 +28,7 @@ pipeline {
                 dockerfile true
             }
             steps {
-                steps.structure()
+                tsteps.structure()
                 sh """
                 |terraform version
                 |ls
