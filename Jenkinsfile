@@ -37,7 +37,7 @@ pipeline {
 }
 
 def structure() {
-    return sh """
+    sh """
     |if [ -d code ] ; then
     |    find . -maxdepth 1 -type f -exec rm {} \\;
     |    mv code/* .
