@@ -24,7 +24,7 @@ pipeline {
         stage('Check dockerfile') {
             agent {
                 dockerfile {
-                    args '-v $(pwd)/code:/tmp/code'
+                    args '-v /tmp/code:$(pwd)/code'
                 }
             }
             steps {
