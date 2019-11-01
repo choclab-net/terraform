@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+def steps = evaluate readTrusted('jenkins/steps.groovy')
+
 pipeline {
     agent any
     options {
@@ -26,7 +28,7 @@ pipeline {
                 dockerfile true
             }
             steps {
-                structure()
+                steps.structure()
                 sh """
                 |terraform version
                 |ls
@@ -34,19 +36,6 @@ pipeline {
             }
         }
     }
-}
-
-def structure() {
-    sh """
-    |if [ -d code ] ; then
-    |    find . -maxdepth 1 -type f -exec rm {} \\;
-    |    mv code/* .
-    |    rm -rf code
-    |    echo "==================================================="
-    |    ls
-    |    echo "==================================================="
-    |fi
-    |""".stripMargin()
 }
 
 def withAwsCredentials(Map args, Closure body) {
